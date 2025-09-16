@@ -7,15 +7,18 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import utility.BrowserBase;
+
+import java.io.IOException;
 
 public class SalesforceLoginSteps {
 
     WebDriver driver ; //global variable
     @Given("user navigates to salesforce login page")
-    public void loginSalesforce(){
+    public void loginSalesforce() throws IOException {
 
-        driver = new ChromeDriver(); //local variable
-        driver.get("https://login.salesforce.com/");
+        BrowserBase base = new BrowserBase();
+        driver =base.getDriver();
     }
 
     @When("user enter the username {string} and password {string}")

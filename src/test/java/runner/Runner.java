@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
        features = {"src/test/resources/testdesign"},
         glue = {"stepdefinition"},
         plugin = {"pretty"},
-        tags = "@lmti"
+        tags = "@Sc02"
 )
 
 public class Runner {
