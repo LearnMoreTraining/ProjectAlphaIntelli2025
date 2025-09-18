@@ -18,6 +18,10 @@ public class ListExample {
         System.out.println(l);
         System.out.println(l.get(3));
 
+        for(int a:l){
+            System.out.println(a);
+        }
+
         List<String> k = new ArrayList<String>();
         k.add("hello");
         k.add("lmti");
