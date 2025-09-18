@@ -6,3 +6,9 @@ Feature: Amazon Automation
     When user extract the dropdown value
     And user select the specific value
     Then validate the dropdown values
+
+    @amazon02
+   Scenario: Babywishlist validation
+     Given user navigates to the webpage
+     When user clicks on baby wish list
+     Then validate the navigation

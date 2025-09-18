@@ -6,14 +6,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utility.BrowserBase;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class AmazonSteps {
 
@@ -70,12 +73,29 @@ public class AmazonSteps {
 
     @When("user clicks on baby wish list")
     public void userClicksOnBabyWishList() {
+        WebElement element = driver.findElement(By.id("nav-link-accountList"));
+            Actions a = new Actions(driver);
+            a.clickAndHold(element).build().perform();
+        driver.findElement(By.linkText("Baby Wishlist")).sendKeys(Keys.chord(Keys.CONTROL,Keys.ENTER));
+          //  driver.findElement(By.linkText("Baby Wishlist")).click();
+          //  driver.findElement(By.partialLinkText("by Wishl")).click();
+       String parentWindow = driver.getWindowHandle();
+       Set<String> winProperties = driver.getWindowHandles();
+       String childWindow = null ;
+       for(String win:winProperties){
+
+           if(!win.equals(parentWindow)){
+               childWindow = win ;
+           }
+       }
+
+       driver.switchTo().window(childWindow);
 
     }
 
     @Then("validate the navigation")
     public void validateTheNavigation() {
 
-
+        Assert.assertEquals("Baby Wishlist", driver.findElement(By.xpath("//h2[text()='Baby Wishlist']")).getText());
     }
 }
