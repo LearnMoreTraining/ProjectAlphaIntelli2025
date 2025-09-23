@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import pageobjects.AmazonHomePage;
+import pageobjects.AmazonSearchResultPage;
 import utility.BrowserBase;
 
 import java.io.IOException;
@@ -67,5 +68,16 @@ public class AmazonSteps {
     public void validateTheNavigation() {
 
         Assert.assertEquals("Baby Wishlist", driver.findElement(By.xpath("//h2[text()='Baby Wishlist']")).getText());
+    }
+
+    @When("user search for product and select one product from the search result")
+    public void userSearchForProductAndSelectOneProductFromTheSearchResult() {
+
+        AmazonHomePage a = new AmazonHomePage(driver);
+         a.enterProductName("iphone");
+         a.clickSearchIcon();
+        AmazonSearchResultPage resultPage = new AmazonSearchResultPage(driver);
+        resultPage.selectProduct();
+
     }
 }

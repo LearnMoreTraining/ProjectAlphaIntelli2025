@@ -12,3 +12,8 @@ Feature: Amazon Automation
      Given user navigates to the webpage
      When user clicks on baby wish list
      Then validate the navigation
+
+    @anazon03
+   Scenario: user orders a product
+     Given user navigates to the webpage
+     When user search for product and select one product from the search result
