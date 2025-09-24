@@ -13,6 +13,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import pageobjects.AmazonHomePage;
 import pageobjects.AmazonSearchResultPage;
+import pageobjects.JqueryPage;
 import utility.BrowserBase;
 
 import java.io.IOException;
@@ -78,6 +79,23 @@ public class AmazonSteps {
          a.clickSearchIcon();
         AmazonSearchResultPage resultPage = new AmazonSearchResultPage(driver);
         resultPage.selectProduct();
+
+    }
+
+    @When("user do the drag and drop")
+    public void userDoTheDragAndDrop() {
+
+        JqueryPage jqueryPage = new JqueryPage(driver);
+        jqueryPage.dragAndDrop();
+    }
+
+    @Then("verify the status")
+    public void verifyTheStatus() {
+
+    }
+
+    @When("user clicks on button")
+    public void userClicksOnButton() {
 
     }
 }
