@@ -1,9 +1,14 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class JqueryPage {
 
@@ -33,5 +38,21 @@ public class JqueryPage {
 
         driver.findElement(By.xpath("123")).click();
 
+    }
+
+    public boolean checkWait() {
+        driver.findElement(By.id("quote")).click();
+        boolean flag ;
+        try {
+            WebElement a = driver.findElement(By.xpath("//h3[text()='Hello, Learn More Aspirants']"));
+            flag = a.isDisplayed();
+        } catch (NoSuchElementException e) {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+            wait.pollingEvery(Duration.ofSeconds(10));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[text()='Hello, Learn More Aspirants']")));
+            wait.ignoring(NoSuchElementException.class);
+            flag = driver.findElement(By.xpath("//h3[text()='Hello, Learn More Aspirants']")).isDisplayed();
+        }
+    return flag;
     }
 }

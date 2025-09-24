@@ -10,15 +10,19 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.AmazonHomePage;
 import pageobjects.AmazonSearchResultPage;
 import pageobjects.JqueryPage;
 import utility.BrowserBase;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class AmazonSteps {
@@ -96,6 +100,8 @@ public class AmazonSteps {
 
     @When("user clicks on button")
     public void userClicksOnButton() {
+        JqueryPage j = new JqueryPage(driver);
+        Assert.assertTrue( j.checkWait());
 
     }
 }

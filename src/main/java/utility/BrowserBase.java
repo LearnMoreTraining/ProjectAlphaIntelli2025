@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 public class BrowserBase {
@@ -35,9 +36,9 @@ public class BrowserBase {
         else{
             throw new InvalidArgumentException("verify the browser name");
         }
-
         driver.get(prob.get("environment").toString());
-
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+       // driver.manage().window().maximize();
         return driver;
     }
 }

@@ -6,6 +6,7 @@ Feature:  Additional scenarios Coverage
     When user do the drag and drop
     Then verify the status
 
+    @waits
   Scenario: wait example
     Given user navigates to the webpage
     When user clicks on button
