@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
        features = {"src/test/resources/testdesign","src/test/resources/book"},
         glue = {"stepdefinition"},
         plugin = {"pretty"},
-        tags = "@waits"
+        tags = "@anazon03"
 )
 
 public class Runner {

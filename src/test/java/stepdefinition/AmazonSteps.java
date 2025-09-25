@@ -27,7 +27,7 @@ import java.util.Set;
 
 public class AmazonSteps {
 
-    WebDriver driver ;
+    private WebDriver driver ;
 
     @Given("user navigates to the webpage")
     public void navigateTo() throws IOException {
@@ -73,13 +73,14 @@ public class AmazonSteps {
     public void validateTheNavigation() {
 
         Assert.assertEquals("Baby Wishlist", driver.findElement(By.xpath("//h2[text()='Baby Wishlist']")).getText());
+
     }
 
     @When("user search for product and select one product from the search result")
     public void userSearchForProductAndSelectOneProductFromTheSearchResult() {
 
         AmazonHomePage a = new AmazonHomePage(driver);
-         a.enterProductName("iphone");
+         a.enterProductName("amazoninputs",1,0);
          a.clickSearchIcon();
         AmazonSearchResultPage resultPage = new AmazonSearchResultPage(driver);
         resultPage.selectProduct();

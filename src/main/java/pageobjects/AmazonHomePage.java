@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import utility.ExcelHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Set;
 
 public class AmazonHomePage {
 
-    WebDriver driver ; //null
+   private WebDriver driver ; //null
 
     public AmazonHomePage(WebDriver driver){
 
@@ -24,6 +25,11 @@ public class AmazonHomePage {
     public void enterProductName(String productName){
 
         driver.findElement(By.id("twotabsearchtextbox")).sendKeys(productName);
+    }
+
+    public void enterProductName(String sheetname, int row , int col){
+        driver.findElement(By.id("twotabsearchtextbox")).sendKeys(ExcelHandler.getExcelData(sheetname,row,col));
+
     }
 
     public void clickSearchIcon(){
