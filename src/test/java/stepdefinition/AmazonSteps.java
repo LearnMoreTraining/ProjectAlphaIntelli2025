@@ -17,6 +17,7 @@ import pageobjects.AmazonHomePage;
 import pageobjects.AmazonSearchResultPage;
 import pageobjects.JqueryPage;
 import utility.BrowserBase;
+import utility.PageObjectManager;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -78,20 +79,17 @@ public class AmazonSteps {
 
     @When("user search for product and select one product from the search result")
     public void userSearchForProductAndSelectOneProductFromTheSearchResult() {
-
-        AmazonHomePage a = new AmazonHomePage(driver);
-         a.enterProductName("amazoninputs",1,0);
-         a.clickSearchIcon();
-        AmazonSearchResultPage resultPage = new AmazonSearchResultPage(driver);
-        resultPage.selectProduct();
+        PageObjectManager pom = new PageObjectManager(driver);
+        pom.getAmazonHomePage().enterProductName("amazoninputs",1,0);
+         pom.getAmazonHomePage().clickSearchIcon();
+        pom.getSearchResultPage().selectProduct();
 
     }
 
     @When("user do the drag and drop")
     public void userDoTheDragAndDrop() {
-
-        JqueryPage jqueryPage = new JqueryPage(driver);
-        jqueryPage.dragAndDrop();
+        PageObjectManager pom = new PageObjectManager(driver);
+        pom.getJqueryPage().dragAndDrop();
     }
 
     @Then("verify the status")
