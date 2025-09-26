@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import pageobjects.AmazonHomePage;
 import pageobjects.AmazonSearchResultPage;
 import pageobjects.JqueryPage;
+import pageobjects.SalesforceLogin;
 
 public class PageObjectManager {
     WebDriver driver ;
@@ -24,5 +25,10 @@ public class PageObjectManager {
     public AmazonSearchResultPage getSearchResultPage(){
         AmazonSearchResultPage searchResultPage = new AmazonSearchResultPage(driver);
         return searchResultPage;
+    }
+
+    public SalesforceLogin getSalesforceLogin(){
+        SalesforceLogin s = new SalesforceLogin(driver);
+        return s;
     }
 }

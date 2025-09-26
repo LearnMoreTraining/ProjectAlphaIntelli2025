@@ -17,12 +17,21 @@ public class BrowserBase {
 
     WebDriver driver ;
 
-    public WebDriver getDriver() throws IOException {
+    public WebDriver getDriver() {
 
         File f = new File("src/main/resources/configurations/frameworkconfig.properties");
-        FileInputStream fis = new FileInputStream(f);
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(f);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         Properties prob = new Properties();
-        prob.load(fis);
+        try {
+            prob.load(fis);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         if(prob.get("browser").toString().equalsIgnoreCase("chrome")){
              driver = new ChromeDriver();

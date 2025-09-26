@@ -18,6 +18,7 @@ import pageobjects.AmazonSearchResultPage;
 import pageobjects.JqueryPage;
 import utility.BrowserBase;
 import utility.PageObjectManager;
+import utility.TestContext;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -27,14 +28,10 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class AmazonSteps {
-
-    private WebDriver driver ;
-
-    @Given("user navigates to the webpage")
-    public void navigateTo() throws IOException {
-        BrowserBase b = new BrowserBase();
-        this.driver = b.getDriver();
-    }
+    TestContext context ;
+      public AmazonSteps(TestContext context){
+          this.context = context;
+      }
 
     @When("user extract the dropdown value")
     public void userExtractTheDropdownValue() {
@@ -66,30 +63,28 @@ public class AmazonSteps {
 
     @When("user clicks on baby wish list")
     public void userClicksOnBabyWishList() {
-        AmazonHomePage homePage = new AmazonHomePage(driver);
-        homePage.clickBabyWishList();
+        context.pom.getAmazonHomePage().clickBabyWishList();
     }
 
     @Then("validate the navigation")
     public void validateTheNavigation() {
 
-        Assert.assertEquals("Baby Wishlist", driver.findElement(By.xpath("//h2[text()='Baby Wishlist']")).getText());
+        Assert.assertEquals("Baby Wishlist", context.driver.findElement(By.xpath("//h2[text()='Baby Wishlist']")).getText());
 
     }
 
     @When("user search for product and select one product from the search result")
     public void userSearchForProductAndSelectOneProductFromTheSearchResult() {
-        PageObjectManager pom = new PageObjectManager(driver);
-        pom.getAmazonHomePage().enterProductName("amazoninputs",1,0);
-         pom.getAmazonHomePage().clickSearchIcon();
-        pom.getSearchResultPage().selectProduct();
+
+        context.pom.getAmazonHomePage().enterProductName("amazoninputs",1,0);
+         context.pom.getAmazonHomePage().clickSearchIcon();
+       context.pom.getSearchResultPage().selectProduct();
 
     }
 
     @When("user do the drag and drop")
     public void userDoTheDragAndDrop() {
-        PageObjectManager pom = new PageObjectManager(driver);
-        pom.getJqueryPage().dragAndDrop();
+        context.pom.getJqueryPage().dragAndDrop();
     }
 
     @Then("verify the status")
@@ -99,8 +94,21 @@ public class AmazonSteps {
 
     @When("user clicks on button")
     public void userClicksOnButton() {
-        JqueryPage j = new JqueryPage(driver);
-        Assert.assertTrue( j.checkWait());
+        Assert.assertTrue( context.pom.getJqueryPage().checkWait());
 
+    }
+
+
+    @And("user clicks on login button")
+    public void clickLoginButton(){
+       context.pom.getSalesforceLogin().clickLoginButton();
+      //  s.clickLoginButton();
+    }
+
+    @Then("user validate the error message")
+    public void validateErrorMessage() {
+
+        String expected ="Error: Please check your username and password. If you still can't log in, contact your Salesforce administrator";
+        Assert.assertEquals(expected, context.pom.getSalesforceLogin().getErrorMessage());
     }
 }
