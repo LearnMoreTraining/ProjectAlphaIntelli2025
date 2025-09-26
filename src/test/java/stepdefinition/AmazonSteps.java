@@ -111,4 +111,19 @@ public class AmazonSteps {
         String expected ="Error: Please check your username and password. If you still can't log in, contact your Salesforce administrator";
         Assert.assertEquals(expected, context.pom.getSalesforceLogin().getErrorMessage());
     }
+
+    @Given("user extracts the shareholder and shareholding value")
+    public void userExtractsTheShareholderAndShareholdingValue() {
+
+          context.pom.getWikiPage().getShareHolder();
+          context.pom.getWikiPage().getShareHolding();
+    }
+
+    @Then("validate the mapping")
+    public void validateTheMapping() {
+
+        System.out.println(context.pom.getWikiPage().getShareHolderHoldingValue());
+
+        Assert.assertEquals("101.00%",context.pom.getWikiPage().getShareHolderHoldingValue().get("Total"));
+    }
 }
