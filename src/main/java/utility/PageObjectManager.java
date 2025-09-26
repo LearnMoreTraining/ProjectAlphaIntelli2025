@@ -1,10 +1,7 @@
 package utility;
 
 import org.openqa.selenium.WebDriver;
-import pageobjects.AmazonHomePage;
-import pageobjects.AmazonSearchResultPage;
-import pageobjects.JqueryPage;
-import pageobjects.SalesforceLogin;
+import pageobjects.*;
 
 public class PageObjectManager {
     WebDriver driver ;
@@ -30,5 +27,10 @@ public class PageObjectManager {
     public SalesforceLogin getSalesforceLogin(){
         SalesforceLogin s = new SalesforceLogin(driver);
         return s;
+    }
+
+    public WikiPage getWikiPage(){
+        WikiPage wikiPage = new WikiPage(driver);
+        return wikiPage;
     }
 }
