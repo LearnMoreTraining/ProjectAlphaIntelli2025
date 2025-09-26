@@ -10,7 +10,10 @@ import org.junit.runner.RunWith;
 
        features = {"src/test/resources/testdesign","src/test/resources/book"},
         glue = {"stepdefinition"},
-        plugin = {"pretty"},
+        plugin = {"pretty",
+                "html:target/reports/report.html",
+                "json:target/reports/sample.json" ,
+                "junit:target/reports/sample.xml"},
         tags = "@anazon03"
 )
 
