@@ -16,7 +16,9 @@ public class StaticNonstatic {
     }
 
     public void m1(){
+        int a = 400;
         System.out.println(a);
+        System.out.println(this.a);
         System.out.println("m1");
     }
 

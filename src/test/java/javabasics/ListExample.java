@@ -15,8 +15,13 @@ public class ListExample {
         l.add(99);
         System.out.println(l);
         l.add(99);
+        l.add(0,100);
         System.out.println(l);
         System.out.println(l.get(3));
+
+        for(int a:l){
+            System.out.println(a);
+        }
 
         List<String> k = new ArrayList<String>();
         k.add("hello");

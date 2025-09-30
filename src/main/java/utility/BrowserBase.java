@@ -10,18 +10,28 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 public class BrowserBase {
 
     WebDriver driver ;
 
-    public WebDriver getDriver() throws IOException {
+    public WebDriver getDriver() {
 
         File f = new File("src/main/resources/configurations/frameworkconfig.properties");
-        FileInputStream fis = new FileInputStream(f);
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(f);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         Properties prob = new Properties();
-        prob.load(fis);
+        try {
+            prob.load(fis);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         if(prob.get("browser").toString().equalsIgnoreCase("chrome")){
              driver = new ChromeDriver();
@@ -35,9 +45,9 @@ public class BrowserBase {
         else{
             throw new InvalidArgumentException("verify the browser name");
         }
-
         driver.get(prob.get("environment").toString());
-
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+       // driver.manage().window().maximize();
         return driver;
     }
 }
