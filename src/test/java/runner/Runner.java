@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
                 "html:target/reports/report.html",
                 "json:target/reports/sample.json" ,
                 "junit:target/reports/sample.xml"},
-        tags = "@amazon01"
+        tags = "@amazon02"
 )
 
 public class Runner {
