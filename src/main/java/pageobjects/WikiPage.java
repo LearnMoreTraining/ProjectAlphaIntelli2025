@@ -1,5 +1,6 @@
 package pageobjects;
 
+import io.cucumber.java.zh_cn.假如;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -52,6 +53,18 @@ public class WikiPage {
 
         }
         return m;
+
+    }
+
+    //dynamic dropdown
+
+    public void fromDropdown(String city){
+
+        driver.findElement(By.xpath("//a[@value='"+city+"']")).click();
+    }
+
+    public void toDropdown(String city){
+        driver.findElement(By.xpath("//div[@id='glsControlGroupSearchView_AvailabilitySearchInputSearchViewdestinationStation1_CTNR']/descendant::a[@value='"+city+"']")).click();
 
     }
 }

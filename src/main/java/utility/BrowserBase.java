@@ -47,7 +47,7 @@ public class BrowserBase {
         }
         driver.get(prob.get("environment").toString());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-       // driver.manage().window().maximize();
+        driver.manage().window().maximize();
         return driver;
     }
 }

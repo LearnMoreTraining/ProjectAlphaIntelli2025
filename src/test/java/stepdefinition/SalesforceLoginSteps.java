@@ -31,15 +31,16 @@ public class SalesforceLoginSteps {
       //  pom.getSalesforceLogin().enterUserName(userName);
       //  pom.getSalesforceLogin().enterPassword(password);
 
-        context.pom.getSalesforceLogin().enterUserName(userName);
-        context.pom.getSalesforceLogin().enterPassword(password);
+//        context.pom.getSalesforceLogin().enterUserName(userName);
+//        context.pom.getSalesforceLogin().enterPassword(password);
 
+        context.pom.getSalesforceLogin().enterUserName(userName).enterPassword(password).clickLoginButton();
     }
 
 
     @Then("user should navigate to home page")
     public void navigateHomePage() {
-
+            context.pom.getWikiPage().fromDropdown("MAA");
     }
 
     @And("lmti")

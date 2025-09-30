@@ -11,19 +11,22 @@ public class SalesforceLogin {
         this.driver = d;
     }
 
-    public void enterUserName(String userName){
+    public SalesforceLogin enterUserName(String userName){
 
         driver.findElement(By.id("username")).sendKeys(userName);
+        return this;
     }
 
-    public void enterPassword(String password){
+    public SalesforceLogin enterPassword(String password){
 
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
+        return this;
     }
 
-    public void clickLoginButton(){
+    public SalesforceLogin clickLoginButton(){
 
         driver.findElement(By.id("Login")).click();
+        return this;
     }
 
     public String getErrorMessage(){
