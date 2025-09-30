@@ -77,9 +77,11 @@ public class AmazonSteps {
     @When("user search for product and select one product from the search result")
     public void userSearchForProductAndSelectOneProductFromTheSearchResult() {
 
-        context.pom.getAmazonHomePage().enterProductName("amazoninputs",1,0);
-         context.pom.getAmazonHomePage().clickSearchIcon();
-       context.pom.getSearchResultPage().selectProduct();
+//        context.pom.getAmazonHomePage().enterProductName("amazoninputs",1,0);
+//        context.pom.getAmazonHomePage().clickSearchIcon();
+
+        context.pom.getAmazonHomePage().enterProductName("amazoninputs",1,0).clickSearchIcon();
+        context.pom.getSearchResultPage().selectProduct(4);
 
     }
 

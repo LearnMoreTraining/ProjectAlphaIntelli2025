@@ -27,9 +27,9 @@ public class AmazonHomePage {
         driver.findElement(By.id("twotabsearchtextbox")).sendKeys(productName);
     }
 
-    public void enterProductName(String sheetname, int row , int col){
+    public AmazonHomePage enterProductName(String sheetname, int row , int col){
         driver.findElement(By.id("twotabsearchtextbox")).sendKeys(ExcelHandler.getExcelData(sheetname,row,col));
-
+        return this;
     }
 
     public void clickSearchIcon(){
