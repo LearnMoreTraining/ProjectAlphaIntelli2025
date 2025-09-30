@@ -9,12 +9,12 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
        features = {"src/test/resources/testdesign","src/test/resources/book"},
-        glue = {"stepdefinition"},
+        glue = {"stepdefinition","hooks"},
         plugin = {"pretty",
                 "html:target/reports/report.html",
                 "json:target/reports/sample.json" ,
                 "junit:target/reports/sample.xml"},
-        tags = "@wiki"
+        tags = "@amazon01"
 )
 
 public class Runner {
