@@ -1,7 +1,6 @@
 package pageobjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 public class SalesforceLogin {
 
@@ -12,8 +11,13 @@ public class SalesforceLogin {
     }
 
     public SalesforceLogin enterUserName(String userName){
-
-        driver.findElement(By.id("username")).sendKeys(userName);
+        try {
+            driver.findElement(By.id("username")).sendKeys(userName);
+        }
+        catch(ElementNotInteractableException e){
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].value='"+userName+"'",driver.findElement(By.id("username")));
+        }
         return this;
     }
 
@@ -24,14 +28,29 @@ public class SalesforceLogin {
     }
 
     public SalesforceLogin clickLoginButton(){
+        try{
+            driver.findElement(By.id("Login")).click();
+        }
+        catch(ElementClickInterceptedException e){
 
-        driver.findElement(By.id("Login")).click();
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click()",driver.findElement(By.id("Login")));
+
+        }
+
         return this;
     }
 
     public String getErrorMessage(){
-
-      return  driver.findElement(By.id("error")).getText();
+        String val;
+        try{
+           val= driver.findElement(By.id("error")).getText();
+        }
+        catch(ElementNotInteractableException e){
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+           val = (String) js.executeScript("return arguments[0].value",driver.findElement(By.id("error")));
+        }
+      return val ;
 
     }
 }

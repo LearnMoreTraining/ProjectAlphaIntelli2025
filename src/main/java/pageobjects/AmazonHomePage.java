@@ -1,9 +1,6 @@
 package pageobjects;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import utility.ExcelHandler;
@@ -24,7 +21,12 @@ public class AmazonHomePage {
 
     public void enterProductName(String productName){
 
-        driver.findElement(By.id("twotabsearchtextbox")).sendKeys(productName);
+    //    driver.findElement(By.id("twotabsearchtextbox")).sendKeys(productName);
+
+        driver.findElement(By.cssSelector("input[id='twotabsearchtextbox']")).sendKeys(productName);
+        driver.findElement(By.cssSelector("#twotabsearchtextbox")).sendKeys(productName);
+        driver.findElement(By.className("nav-input nav-progressive-attribute"));
+        driver.findElement(By.cssSelector(".nav-input.nav-progressive-attribute")).sendKeys(productName);
     }
 
     public AmazonHomePage enterProductName(String sheetname, int row , int col){
@@ -85,5 +87,20 @@ public class AmazonHomePage {
         Select s = new Select(driver.findElement(By.id("searchDropdownBox")));
         s.selectByVisibleText(text);
         // s.selectByValue("search-alias=baby");
+    }
+
+    public void scroll(){
+
+        try {
+
+            Actions a = new Actions(driver);
+            a.scrollToElement(driver.findElement(By.xpath("//*[text()='About Amazon']"))).build().perform();
+
+        } catch (ElementNotInteractableException e) {
+
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].ScrollIntoView",driver.findElement(By.xpath("//*[text()='About Amazon']")));
+            js.executeScript("window.scrollBy(0,700)","");
+        }
     }
 }
