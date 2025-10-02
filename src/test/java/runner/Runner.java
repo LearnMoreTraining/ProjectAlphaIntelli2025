@@ -13,7 +13,9 @@ import org.junit.runner.RunWith;
         plugin = {"pretty",
                 "html:target/reports/report.html",
                 "json:target/reports/sample.json" ,
-                "junit:target/reports/sample.xml"},
+                "junit:target/reports/sample.xml",
+        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
+
         tags = "@amazon02"
 )
 

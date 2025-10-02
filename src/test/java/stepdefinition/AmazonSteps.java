@@ -37,7 +37,7 @@ public class AmazonSteps {
     @When("user extract the dropdown value")
     public void userExtractTheDropdownValue() {
 
-
+        context.pom.getWikiPage().fromDropdown("");
 
     }
 

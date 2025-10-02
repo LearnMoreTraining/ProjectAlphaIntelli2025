@@ -33,18 +33,33 @@ public class BrowserBase {
             throw new RuntimeException(e);
         }
 
-        if(prob.get("browser").toString().equalsIgnoreCase("chrome")){
-             driver = new ChromeDriver();
+//        if(prob.get("browser").toString().equalsIgnoreCase("chrome")){
+//             driver = new ChromeDriver();
+//        }
+//        else if(prob.get("browser").toString().equalsIgnoreCase("edge")){
+//             driver = new EdgeDriver();
+//        }
+//        else if(prob.get("browser").toString().equalsIgnoreCase("safari")){
+//            driver = new SafariDriver();
+//        }
+//        else{
+//            throw new InvalidArgumentException("verify the browser name");
+//        }
+
+        switch(prob.get("browser").toString().toLowerCase()){
+            case "chrome":
+                driver = new ChromeDriver();
+                break;
+            case "edge":
+                driver = new EdgeDriver();
+                break;
+            case "safari":
+                driver = new SafariDriver();
+                break;
+            default:
+                throw new InvalidArgumentException("verify the browser name");
         }
-        else if(prob.get("browser").toString().equalsIgnoreCase("edge")){
-             driver = new EdgeDriver();
-        }
-        else if(prob.get("browser").toString().equalsIgnoreCase("safari")){
-            driver = new SafariDriver();
-        }
-        else{
-            throw new InvalidArgumentException("verify the browser name");
-        }
+
         driver.get(prob.get("environment").toString());
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
